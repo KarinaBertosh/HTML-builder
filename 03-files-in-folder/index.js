@@ -11,19 +11,14 @@ var path = require('path')
 
 fs.readdir(secretFolder, (err, files) => {
   files.forEach(file => {
-    console.log(file);
+      fs.stat(`./03-files-in-folder/secret-folder/${file}`, (error, stats) => {
+        if (error) {
+          console.log(error);
+        }
+        else {
+          const a = stats.size / 1000;
+          console.log(`${file}: ${stats.size / 1000} kb`);
+        }
+      });
   })
 });
-
-const files = [dataFile, scriptFile, styleFile, textFile]
-
-files.forEach((file) => {
-  fs.stat(file, (error, stats) => {
-    if (error) {
-      console.log(error);
-    }
-    else {
-      console.log(`data.csv: ${stats.size / 1000} kb`);
-    }
-  });
-})

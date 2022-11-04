@@ -1,9 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const styles = './05-merge-styles/styles/';
-const styles1 = './05-merge-styles/styles/style-1.css';
-const styles2 = './05-merge-styles/styles/style-2.css';
-const styles3 = './05-merge-styles/styles/style-3.css';
 
 const readline = require('readline');
 
@@ -19,7 +16,6 @@ process.stdin.pipe(bundle)
 
 fs.readdir(styles, (err, files) => {
   files.forEach(file => {
-    console.log(file);
     if (path.extname(file) === '.css') {
       fs.readFile(`./05-merge-styles/styles/${file}`, 'utf8', function (error, fileContent) {
         if (error) throw error;
