@@ -11,7 +11,9 @@ var path = require('path')
 
 fs.readdir(secretFolder, (err, files) => {
   files.forEach(file => {
-      fs.stat(`./03-files-in-folder/secret-folder/${file}`, (error, stats) => {
+
+    fs.stat(`./03-files-in-folder/secret-folder/${file}`, (error, stats) => {
+      if (stats.isFile()) {
         if (error) {
           console.log(error);
         }
@@ -19,6 +21,7 @@ fs.readdir(secretFolder, (err, files) => {
           const a = stats.size / 1000;
           console.log(`${file}: ${stats.size / 1000} kb`);
         }
-      });
+      }
+    });
   })
 });
